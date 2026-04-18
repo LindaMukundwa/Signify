@@ -4,14 +4,31 @@ export interface MedicalProfile {
   age: string;
   bloodType: string;
   allergies: string[];
-  medications: string[];           // name and dosage as strings
+  medications: string[];
   conditions: string[];
   emergencyContactName: string;
   emergencyContactPhone: string;
   emergencyContactRelation: string;
   insuranceProvider: string;
   insuranceMemberId: string;
-  communicationNote: string;       // e.g. "Deaf/ uses ASL"
+  communicationNote: string;
   dnr: boolean;
-  lastUpdated: string;             // ISO date string
+  lastUpdated: string;
 }
+
+export const EMPTY_PROFILE: MedicalProfile = {
+  name: "",
+  age: "",
+  bloodType: "",
+  allergies: [],
+  medications: [],
+  conditions: [],
+  emergencyContactName: "",
+  emergencyContactPhone: "",
+  emergencyContactRelation: "",
+  insuranceProvider: "",
+  insuranceMemberId: "",
+  communicationNote: "",
+  dnr: false,
+  lastUpdated: new Date().toISOString(),
+};
