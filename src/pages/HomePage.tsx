@@ -20,14 +20,11 @@ export default function HomePage() {
               src={SignifyLogo}
               alt="Signify logo"
               className="w-12 h-12"
-              style={{ width: '100px', borderRadius: '50%' }} 
+              style={{ width: '200px', borderRadius: '50%' }} 
             />
             <div>
-              <h1 className="text-3xl font-bold text-primary" style={{ fontFamily: "'ShadowHand', cursive" }}>
-                Signify
-              </h1>
               <p className="text-sm text-text-secondary mt-0">
-                Breaking down communication barriers
+                Built for breaking down communication barriers
               </p>
             </div>
           </div>
