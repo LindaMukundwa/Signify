@@ -1,15 +1,46 @@
-import React, { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, type FC } from "react";
 import { LetterDisplay } from "./LetterDisplay";
-import { classifyHandshape, isMotionLetter } from "../../lib/classifyHandshape";
+import { classify, isMotionLetter } from "../../lib/classifyHandshape";
 import { Card } from "../shared/Card";
+import { useHandDetection } from "../../hooks/useHandDetection";
 
-export const FingerspellCamera: React.FC = () => {
+interface FingerspellCameraProps {
+  modelReady: boolean;
+}
+
+export const FingerspellCamera: FC<FingerspellCameraProps> = ({ modelReady }) => {
   const videoRef = useRef<HTMLVideoElement>(null);
-  const canvasRef = useRef<HTMLCanvasElement>(null);
   const [letter, setLetter] = useState<string | null>(null);
   const [confidence, setConfidence] = useState(0);
   const [hasPermission, setHasPermission] = useState<boolean | null>(null);
   const [error, setError] = useState<string>("");
+
+  useHandDetection({
+    enabled: modelReady && hasPermission === true,
+    videoRef,
+    onLandmarks: (landmarks) => {
+      if (landmarks.length !== 63) {
+        setLetter(null);
+        setConfidence(0);
+        return;
+      }
+
+      const result = classify(landmarks);
+
+      if (result.confidence > 0.85) {
+        setLetter(result.letter);
+        setConfidence(result.confidence);
+        return;
+      }
+
+      setLetter(null);
+      setConfidence(0);
+    },
+    onNoHand: () => {
+      setLetter(null);
+      setConfidence(0);
+    },
+  });
 
   useEffect(() => {
     const initCamera = async () => {
@@ -25,33 +56,6 @@ export const FingerspellCamera: React.FC = () => {
         if (videoRef.current) {
           videoRef.current.srcObject = stream;
           setHasPermission(true);
-
-          // Start inference loop
-          const canvas = canvasRef.current;
-          if (canvas) {
-            const ctx = canvas.getContext("2d");
-            if (ctx) {
-              const processFrame = () => {
-                ctx.drawImage(videoRef.current!, 0, 0, canvas.width, canvas.height);
-
-                // Placeholder: In production, we would use MediaPipe Hands here
-                // For now, we'll just show the camera feed
-                const result = classifyHandshape([]);
-
-                if (result.letter && result.confidence > 0.85) {
-                  setLetter(result.letter);
-                  setConfidence(result.confidence);
-                } else {
-                  setLetter(null);
-                  setConfidence(0);
-                }
-
-                requestAnimationFrame(processFrame);
-              };
-
-              processFrame();
-            }
-          }
         }
       } catch (err) {
         console.error("Camera error:", err);
@@ -81,32 +85,29 @@ export const FingerspellCamera: React.FC = () => {
       {/* Camera Feed */}
       <Card>
         <div className="space-y-3">
-          {hasPermission ? (
-            <>
-              <video
-                ref={videoRef}
-                autoPlay
-                playsInline
-                className="w-full aspect-video bg-black rounded"
-              />
-              <canvas
-                ref={canvasRef}
-                width={640}
-                height={480}
-                className="hidden"
-              />
-            </>
-          ) : (
+          {/* Video is always mounted so videoRef is available when getUserMedia resolves */}
+          <video
+            ref={videoRef}
+            autoPlay
+            playsInline
+            muted
+            className={`w-full aspect-video bg-black rounded ${hasPermission ? "" : "hidden"}`}
+          />
+          {hasPermission === null && (
+            <div className="w-full aspect-video bg-surface-secondary rounded flex items-center justify-center">
+              <p className="text-sm text-text-muted">Requesting camera access...</p>
+            </div>
+          )}
+          {hasPermission === false && (
             <div className="w-full aspect-video bg-surface-secondary rounded flex items-center justify-center">
               <div className="text-center">
                 <p className="text-text-muted mb-2">📷</p>
-                {error ? (
-                  <p className="text-sm text-danger">{error}</p>
-                ) : (
-                  <p className="text-sm text-text-muted">Requesting camera access...</p>
-                )}
+                <p className="text-sm text-danger">{error}</p>
               </div>
             </div>
+          )}
+          {hasPermission === true && !modelReady && (
+            <p className="text-sm text-text-muted">Loading model...</p>
           )}
         </div>
       </Card>
