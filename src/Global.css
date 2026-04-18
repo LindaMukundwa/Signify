@@ -1,5 +1,10 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap");
-@import url("https://cdn.jsdelivr.net/gh/fontsource/fontsource@latest/fonts/shadow-hand/index.min.css");
+/*@import url("https://cdn.jsdelivr.net/gh/fontsource/fontsource@latest/fonts/shadow-hand/index.min.css");*/
+@font-face {
+	font-family: 'ShadowHand';
+	src: url('//2ttf.com/webfont/UIswCwhB/webfont.ttf') format('truetype');
+}
+@import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=Ballet:opsz@16..72&family=Barrio&family=Imperial+Script&family=Indie+Flower&family=Lavishly+Yours&family=Lexend:wght@100..900&family=Loved+by+the+King&family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&family=Monoton&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Roboto+Slab:wght@100..900&family=Sofia&family=Source+Code+Pro:ital,wght@0,500;1,500&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -18,7 +23,7 @@
     --color-success: #639922;
 
     /* Surfaces */
-    --color-bg: #F8F8F7;
+    --color-bg: #ffffff;
     --color-surface: #FFFFFF;
     --color-surface-secondary: #F1EFE8;
 
@@ -59,7 +64,7 @@
   }
 
   body {
-    font-family: system-ui, -apple-system, sans-serif;
+    font-family: "Lexend", sans-serif;;
     background-color: var(--color-bg);
     color: var(--color-text-primary);
     line-height: 1.5;

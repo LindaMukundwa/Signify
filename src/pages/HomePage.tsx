@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { Heart, Zap, Hand, QrCode } from "lucide-react";
 import { Button } from "../components/shared/Button";
 import { Card } from "../components/shared/Card";
+import SignifyLogo from "../assets/SignifyLogo.png";
 import { useProfileStore } from "../store/profileStore";
 
 export default function HomePage() {
@@ -16,12 +17,13 @@ export default function HomePage() {
         <div className="max-w-app mx-auto px-4 py-6">
           <div className="flex items-center gap-4">
             <img
-              src="https://cdn.builder.io/api/v1/image/assets%2F0339c476d92443ac95849fae30c5eeb3%2Fd8805cd1a8ec4785847f881a88294e08?format=webp&width=100&height=100"
+              src={SignifyLogo}
               alt="Signify logo"
               className="w-12 h-12"
+              style={{ width: '100px', borderRadius: '50%' }} 
             />
             <div>
-              <h1 className="text-3xl font-bold text-primary" style={{ fontFamily: "'Shadow Hand', cursive" }}>
+              <h1 className="text-3xl font-bold text-primary" style={{ fontFamily: "'ShadowHand', cursive" }}>
                 Signify
               </h1>
               <p className="text-sm text-text-secondary mt-0">
