@@ -1,3 +1,6 @@
+/**
+ * Hard-coded phrases but user can add custom ones as well
+ */
 import type { Phrase } from "../types/phrase";
 
 export const DEFAULT_PHRASES: Phrase[] = [
