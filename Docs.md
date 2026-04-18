@@ -1,8 +1,8 @@
-# Signa — HackPrinceton Project
+# Signify — HackPrinceton Project
 
 ## Overview
 
-Signa is a client-side React + TypeScript + Vite web app that helps Deaf and hard-of-hearing people communicate with hearing people who don't know ASL. It targets two scenarios: emergency encounters with first responders as well as day-to-day encounters with pharmacies, clinics, etc.
+Signify is a client-side React + TypeScript + Vite web app that helps Deaf and hard-of-hearing people communicate with hearing people who don't know ASL. It targets two scenarios: emergency encounters with first responders as well as day-to-day encounters with pharmacies, clinics, etc.
 
 **Deployed on:** Vercel (auto-deploy from GitHub)  
 **No backend. No database. All data stays on the user's device.**
@@ -134,7 +134,7 @@ export const decodeProfile = (encoded: string): MedicalProfile =>
 
 ### Design language
 
-Signa uses a clean, clinical aesthetic, which is inspired by Apple Health and Apple ID. The goal is to feel trustworthy and readable at a glance, especially under stress.
+Signify uses a clean, clinical aesthetic, which is inspired by Apple Health and Apple ID. The goal is to feel trustworthy and readable at a glance, especially under stress.
 
 - Flat surfaces, no gradients on functional elements
 - Generous whitespace — breathing room signals calm
