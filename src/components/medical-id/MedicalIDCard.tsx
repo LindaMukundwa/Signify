@@ -1,18 +1,30 @@
-import React from "react";
+import React, { useRef } from "react";
 import type { MedicalProfile } from "../../types/profile";
 import { Card } from "../shared/Card";
+import { Camera } from "lucide-react";
 
 interface MedicalIDCardProps {
   profile: MedicalProfile;
+  onPhotoChange?: (base64: string) => void;
 }
 
-export const MedicalIDCard: React.FC<MedicalIDCardProps> = ({ profile }) => {
+export const MedicalIDCard: React.FC<MedicalIDCardProps> = ({ profile, onPhotoChange }) => {
+  const fileInputRef = useRef<HTMLInputElement>(null);
+
   const initials = profile.name
     .split(" ")
     .map((n) => n[0])
     .join("")
     .toUpperCase()
     .slice(0, 2);
+
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file || !onPhotoChange) return;
+    const reader = new FileReader();
+    reader.onload = () => onPhotoChange(reader.result as string);
+    reader.readAsDataURL(file);
+  };
 
   const formatDate = (dateStr: string) => {
     if (!dateStr) return "";
@@ -30,10 +42,35 @@ export const MedicalIDCard: React.FC<MedicalIDCardProps> = ({ profile }) => {
   return (
     <Card large className="max-w-sm mx-auto">
       {/* Avatar */}
-      <div className="flex justify-center mb-6">
-        <div className="w-20 h-20 rounded-full bg-primary text-white flex items-center justify-center text-3xl font-bold">
-          {initials}
-        </div>
+      <div id="photo" className="flex justify-center mb-6">
+        <button
+          type="button"
+          onClick={() => onPhotoChange && fileInputRef.current?.click()}
+          className={`relative w-20 h-20 rounded-full overflow-hidden ${onPhotoChange ? "cursor-pointer" : "cursor-default"}`}
+          aria-label={onPhotoChange ? "Change photo" : undefined}
+        >
+          {profile.photo ? (
+            <img src={profile.photo} alt={profile.name} className="w-full h-full object-cover" />
+          ) : (
+            <div className="w-full h-full bg-primary text-white flex items-center justify-center text-3xl font-bold">
+              {initials}
+            </div>
+          )}
+          {onPhotoChange && (
+            <div className="absolute inset-0 bg-black/30 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity">
+              <Camera size={20} color="white" />
+            </div>
+          )}
+        </button>
+        {onPhotoChange && (
+          <input
+            ref={fileInputRef}
+            type="file"
+            accept="image/*"
+            className="hidden"
+            onChange={handleFileChange}
+          />
+        )}
       </div>
 
       {/* Name */}

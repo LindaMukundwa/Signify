@@ -77,6 +77,29 @@
     color: darkslategray;
   }
 
+  #photo {
+    display: flex;
+    flex-wrap: wrap;
+    align-content: stretch;
+    flex-direction: column;
+    font-family: 'Lexend';
+    font-size: small;
+    }
+
+    #photo button {
+        border-block-color: darkslategrey;
+        border: darkslategrey;
+        font-family: 'Lexend';
+        padding: 1px;
+        border: 3px solid black;
+        border-radius: 5px;
+    }
+
+    #photo img {
+        max-width: 100px;
+    }
+
+
   #bottomNav {
     justify-content: space-evenly;
     align-items: center;

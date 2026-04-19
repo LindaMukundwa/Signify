@@ -1,6 +1,7 @@
 // Storing primary data type used throughout application for a patient medical profile
 export interface MedicalProfile {
   name: string;
+  photo?: string;
   age: string;
   bloodType: string;
   allergies: string[];

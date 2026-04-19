@@ -8,6 +8,7 @@ type TabType = "form" | "preview";
 
 export default function MedicalIDPage() {
   const profile = useProfileStore((state) => state.profile);
+  const updateProfile = useProfileStore((state) => state.updateProfile);
   const [activeTab, setActiveTab] = useState<TabType>(profile.name ? "preview" : "form");
 
   const hasProfile = !!profile.name;
@@ -73,7 +74,10 @@ export default function MedicalIDPage() {
             {/* Card Preview */}
             <div>
               <h3 className="font-semibold text-text-primary mb-4">Card Preview</h3>
-              <MedicalIDCard profile={profile} />
+              <MedicalIDCard
+                profile={profile}
+                onPhotoChange={(photo) => updateProfile({ photo })}
+              />
             </div>
 
             {/* QR Code */}
