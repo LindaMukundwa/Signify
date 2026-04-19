@@ -1,9 +1,7 @@
-import React from "react";
 import { Link } from "react-router-dom";
 import { Heart, Zap, Hand, QrCode } from "lucide-react";
 import { Button } from "../components/shared/Button";
 import { Card } from "../components/shared/Card";
-import SignifyLogo from "../assets/SignifyLogo.png";
 import { useProfileStore } from "../store/profileStore";
 
 export default function HomePage() {
@@ -11,28 +9,8 @@ export default function HomePage() {
   const hasProfile = !!profile.name;
 
   return (
-    <div className="min-h-screen bg-bg flex flex-col">
-      {/* Header */}
-      <header className="bg-surface border-b border-border sticky top-0 z-50">
-        <div className="max-w-app mx-auto px-4 py-6">
-          <div className="flex items-center gap-4">
-            <img
-              src={SignifyLogo}
-              alt="Signify logo"
-              className="w-12 h-12"
-              style={{ width: '100px', borderRadius: '50%' }} 
-            />
-            <div>
-              <p className="text-sm text-text-secondary mt-0">
-                Built for breaking down communication barriers
-              </p>
-            </div>
-          </div>
-        </div>
-      </header>
-
-      {/* Main Content */}
-      <main className="flex-1 max-w-app w-full mx-auto px-4 py-8 space-y-8">
+    <div className="bg-bg">
+      <main className="max-w-app w-full mx-auto px-4 py-8 space-y-8">
         {/* Welcome Message */}
         <div className="space-y-3">
           <h2 className="text-2xl font-bold text-text-primary">Welcome</h2>
@@ -150,7 +128,7 @@ export default function HomePage() {
         )}
 
         {/* ADA Resources Section */}
-        <Card className="border-primary bg-primary-light">
+        <Card className="border-primary bg-primary-dark">
           <div className="space-y-4">
             <div className="flex items-start gap-3">
               <span className="text-2xl">⚖️</span>
@@ -274,12 +252,6 @@ export default function HomePage() {
         </div>
       </main>
 
-      {/* Footer */}
-      <footer className="bg-surface border-t border-border mt-12">
-        <div className="max-w-app mx-auto px-4 py-6 text-center text-sm text-text-muted">
-          <p>Signify • Open source • Privacy-first communication</p>
-        </div>
-      </footer>
     </div>
   );
 }
