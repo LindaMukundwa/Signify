@@ -1,6 +1,5 @@
 import { useLocation, useNavigate } from 'react-router-dom';
 import { ChevronLeft } from 'lucide-react';
-import SignifyLogo from '../../assets/SignifyLogo.png';
 
 const PAGE_TITLES: Record<string, string> = {
   '/medical-id': 'Medical ID',
