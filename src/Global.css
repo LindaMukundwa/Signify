@@ -74,6 +74,30 @@
 
   .text-2xl {
     font-size: 60px;
+    color: darkslategray;
+  }
+
+  #slider {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    overflow: hidden;
+    border-radius: 0.5rem;
+    background-color: darkslategray;
+    justify-content: space-evenly;
+  }
+
+  #slider > button {
+    border: none;
+    background: transparent;
+    color: whitesmoke;
+    cursor: pointer;
+    padding: 0.5rem 1.5rem;
+    font-family: lexend;
+  }
+
+  #slider > button:hover {
+    background: #c63d3c;
   }
 
   h3 {
@@ -125,23 +149,51 @@
 
 #bottomNav {
     justify-content: space-evenly;
-    align-items: baseline;
+    align-items: center;
     display: flex;
-    padding: 15px;
+    padding: 10px 8px;
+    background-color: whitesmoke;
     gap: 20px 30px;
     flex-wrap: nowrap;
+    border: beige;
+    width: 100%;
     flex-direction: row-reverse;
+    overflow: hidden;
+    box-shadow: 0 15px 30px;
 }
 
 #header {
     align-items: center;
+    padding-top: 10px;
     display: flex;
+    color: darkslategray;
+    flex-wrap: nowrap;
+    align-content: stretch;
+    justify-content: space-evenly;
+}
+
+#header button {
+    border-radius: 90%;
+    background-color: darkorange;
 }
 
 #welcome {
-    font-family: "Archivo Black", sans-serif;
+    font-family: "Lexend", sans-serif;
+    color: darkslategray;
+    display: flex;
     font-weight: 600px;
+    font-style: normal;
+    flex-wrap: nowrap;
+    flex-direction: row-reverse;
+    align-content: center;
+    justify-content: space-between;
 }
+
+#welcome img {
+    size: 100px;
+    opacity: 0.8;
+}
+
 
 #phraseCard {
     display: flex;

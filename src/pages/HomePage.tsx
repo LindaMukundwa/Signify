@@ -3,6 +3,7 @@ import { Heart, Zap, Hand, QrCode, Scale } from "lucide-react";
 import { Button } from "../components/shared/Button";
 import { Card } from "../components/shared/Card";
 import { useProfileStore } from "../store/profileStore";
+import SignifyLogo from '../assets/SignifyLogo.png';
 
 const HeartIcon = () => (
   <Heart color="red" strokeWidth={2} />
@@ -29,7 +30,14 @@ export default function HomePage() {
       <main className="max-w-app w-full mx-auto px-4 py-8 space-y-8">
         {/* Welcome Message */}
         <div className="space-y-3">
-          <h2 id="welcome" className="text-2xl font-bold text-text-primary">Welcome</h2>
+            <div id="welcome"><img
+              src={SignifyLogo}
+              alt="Signify"
+              className="h-10 w-10 rounded-full object-cover"
+              style={{ width: '120px', borderRadius: '50%' }} 
+            />
+            <h2 className="text-2xl font-bold text-text-primary">Welcome</h2>
+            </div>
           <p className="text-text-secondary">
             Signify helps you communicate with hearing people in emergency and
             everyday situations. All data stays on your device.

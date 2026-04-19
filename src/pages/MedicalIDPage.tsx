@@ -16,7 +16,7 @@ export default function MedicalIDPage() {
     <div className="bg-bg">
       <main className="max-w-app w-full mx-auto px-4 py-8 pb-6">
         {hasProfile && (
-          <div className="mb-6 flex bg-surface-secondary rounded-full p-1 gap-1 border border-border">
+          <div id="slider" className="mb-6 flex bg-surface-secondary rounded-full p-1 gap-1 border border-border">
             <button
               onClick={() => setActiveTab("form")}
               className={`flex-1 py-2 rounded-full text-sm font-semibold transition-all duration-200 ${

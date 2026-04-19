@@ -16,16 +16,10 @@ export const TopNav: React.FC = () => {
   const title = PAGE_TITLES[pathname];
 
   return (
-    <header id='header' className="bg-surface border-b border-border sticky top-0 z-50 flex-shrink-0">
-      <div className="max-w-app mx-auto px-4 h-14 flex items-center">
+    <header className="bg-surface border-b border-border sticky top-0 z-50 flex-shrink-0">
+      <div id='header' className="max-w-app mx-auto px-4 h-14 flex items-center">
         {isHome ? (
           <div className="w-full justify-center">
-            <img
-              src={SignifyLogo}
-              alt="Signify"
-              className="h-10 w-10 rounded-full object-cover"
-              style={{ width: '120px', borderRadius: '50%' }} 
-            />
           </div>
         ) : (
           <>
