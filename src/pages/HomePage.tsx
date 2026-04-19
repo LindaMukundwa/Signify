@@ -20,7 +20,7 @@ export default function HomePage() {
               className="h-10 w-10 rounded-full object-cover"
               style={{ width: '120px', borderRadius: '50%' }} 
             />
-            <h2 className="text-2xl font-bold text-text-primary">Welcome</h2>
+            <h2 className="text-[28px] font-bold text-text-primary">Welcome</h2>
             </div>
           <p id="subtext" className="text-text-secondary">
             Signify helps you communicate with hearing people in emergency and
