@@ -2,7 +2,7 @@ import { Link, useLocation } from "react-router-dom";
 import { Heart, Zap, Hand } from "lucide-react";
 
 const navItems = [
-  { path: "/medical-id", label: "Medical ID", icon: Heart },
+  { path: "/medical-id", label: "Medical ID", icon: Heart},
   { path: "/phrases", label: "Phrase Pad", icon: Zap },
   { path: "/fingerspell", label: "Fingerspell", icon: Hand },
 ];

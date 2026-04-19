@@ -219,7 +219,7 @@ export const FingerspellCamera: FC<FingerspellCameraProps> = ({ modelReady }) =>
           )}
         </p>
         {word && (
-          <button
+          <button id="clearButton"
             onClick={() => setWord("")}
             className="flex-shrink-0 text-xs text-text-muted hover:text-danger transition-colors font-medium"
           >

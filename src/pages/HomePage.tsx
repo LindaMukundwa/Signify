@@ -5,22 +5,6 @@ import { Card } from "../components/shared/Card";
 import { useProfileStore } from "../store/profileStore";
 import SignifyLogo from '../assets/SignifyLogo.png';
 
-const HeartIcon = () => (
-  <Heart color="red" strokeWidth={2} />
-);
-
-const ZapIcon = () => (
-  <Zap color="yellow" strokeWidth={2} />
-);
-
-const HandIcon = () => (
-  <Hand color="blue" strokeWidth={2} />
-);
-
-const QrCodeIcon = () => (
-  <QrCode color="black" strokeWidth={2} />
-);
-
 export default function HomePage() {
   const profile = useProfileStore((state) => state.profile);
   const hasProfile = !!profile.name;
@@ -67,11 +51,11 @@ export default function HomePage() {
         {/* Feature Cards */}
         <div className="grid gap-4">
           {/* Medical ID */}
-          <Link to="/medical-id" className="no-underline">
+          <Link to="/medical-id" className="no-underline [&_*]:no-underline block">
             <Card className="cursor-pointer hover:bg-surface-secondary transition-colors h-full">
               <div className="flex items-start gap-4">
                 <div className="w-12 h-12 rounded-lg bg-danger/10 flex items-center justify-center flex-shrink-0">
-                  <Heart className="text-danger" size={24} />
+                  <Heart color="#E24B4A" size={24} strokeWidth={2} />
                 </div>
                 <div className="flex-1">
                   <h3 className="font-semibold text-text-primary">Medical ID</h3>
@@ -87,11 +71,11 @@ export default function HomePage() {
           </Link>
 
           {/* Phrase Pad */}
-          <Link to="/phrases" className="no-underline">
+          <Link to="/phrases" className="no-underline [&_*]:no-underline block">
             <Card className="cursor-pointer hover:bg-surface-secondary transition-colors h-full">
               <div className="flex items-start gap-4">
-                <div className="w-12 h-12 rounded-lg bg-primary-light flex items-center justify-center flex-shrink-0">
-                  <Zap className="text-primary" size={24} />
+                <div className="w-12 h-12 rounded-lg bg-warning/10 flex items-center justify-center flex-shrink-0">
+                  <Zap color="#EAB308" size={24} strokeWidth={2} />
                 </div>
                 <div className="flex-1">
                   <h3 className="font-semibold text-text-primary">Phrase Pad</h3>
@@ -107,11 +91,11 @@ export default function HomePage() {
           </Link>
 
           {/* Fingerspelling */}
-          <Link to="/fingerspell" className="no-underline">
+          <Link to="/fingerspell" className="no-underline [&_*]:no-underline block">
             <Card className="cursor-pointer hover:bg-surface-secondary transition-colors h-full">
               <div className="flex items-start gap-4">
-                <div className="w-12 h-12 rounded-lg bg-warning/10 flex items-center justify-center flex-shrink-0">
-                  <Hand className="text-warning" size={24} />
+                <div className="w-12 h-12 rounded-lg bg-blue-50 flex items-center justify-center flex-shrink-0">
+                  <Hand color="#3B82F6" size={24} strokeWidth={2} />
                 </div>
                 <div className="flex-1">
                   <h3 className="font-semibold text-text-primary">Fingerspelling</h3>
@@ -132,7 +116,7 @@ export default function HomePage() {
           <Card className="bg-primary-light border-primary">
             <div className="space-y-4">
               <div className="flex items-start gap-3">
-                <QrCode className="text-primary flex-shrink-0" size={24} />
+                <QrCode color="#000000" size={24} strokeWidth={2} className="flex-shrink-0" />
                 <div>
                   <h3 className="font-semibold text-text-primary">
                     Get Started with Medical ID
