@@ -19,7 +19,7 @@ export default function HomePage() {
               alt="Signify"
               style={{ width: '120px', borderRadius: '50%' }} 
             />
-            <h2 className="text-[45px] font-bold text-text-primary">Welcome</h2>
+            <h2 className="text-[43px] font-bold text-text-primary">Welcome</h2>
             </div>
           <p id="subtext" className="text-text-secondary">
             Signify helps you communicate with hearing people in emergency and
