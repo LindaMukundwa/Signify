@@ -3,6 +3,7 @@ import { useState, useCallback, useRef } from "react";
 interface UseSpeechRecognitionReturn {
   isListening: boolean;
   transcript: string;
+  interimTranscript: string;
   error: string;
   startListening: () => void;
   stopListening: () => void;
@@ -20,12 +21,13 @@ declare global {
 export const useSpeechRecognition = (): UseSpeechRecognitionReturn => {
   const [isListening, setIsListening] = useState(false);
   const [transcript, setTranscript] = useState("");
+  const [interimTranscript, setInterimTranscript] = useState("");
   const [error, setError] = useState("");
   const recognitionRef = useRef<any>(null);
 
   const isSupported =
     typeof window !== "undefined" &&
-    (window.SpeechRecognition || (window as any).webkitSpeechRecognition);
+    !!(window.SpeechRecognition || window.webkitSpeechRecognition);
 
   const startListening = useCallback(() => {
     if (!isSupported) {
@@ -33,66 +35,70 @@ export const useSpeechRecognition = (): UseSpeechRecognitionReturn => {
       return;
     }
 
-    if (recognitionRef.current) {
-      recognitionRef.current.stop();
-    }
+    recognitionRef.current?.stop();
 
-    const SpeechRecognition =
-      window.SpeechRecognition || (window as any).webkitSpeechRecognition;
-
+    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
     const recognition = new SpeechRecognition();
     recognitionRef.current = recognition;
 
-    recognition.continuous = false;
+    recognition.continuous = true;
     recognition.interimResults = true;
     recognition.language = "en-US";
 
     recognition.onstart = () => {
       setIsListening(true);
       setError("");
-      setTranscript("");
     };
 
     recognition.onresult = (event: any) => {
-      let interimTranscript = "";
+      let finalSegment = "";
+      let interim = "";
 
       for (let i = event.resultIndex; i < event.results.length; i++) {
-        const transcriptSegment = event.results[i][0].transcript;
-
+        const text = event.results[i][0].transcript;
         if (event.results[i].isFinal) {
-          setTranscript((prev) => prev + transcriptSegment + " ");
+          finalSegment += text + " ";
         } else {
-          interimTranscript += transcriptSegment;
+          interim += text;
         }
       }
+
+      if (finalSegment) {
+        setTranscript((prev) => prev + finalSegment);
+      }
+      setInterimTranscript(interim);
     };
 
     recognition.onerror = (event: any) => {
-      setError(`Error: ${event.error}`);
+      if (event.error !== "no-speech") {
+        setError(`Error: ${event.error}`);
+      }
     };
 
     recognition.onend = () => {
       setIsListening(false);
+      setInterimTranscript("");
     };
 
     recognition.start();
   }, [isSupported]);
 
   const stopListening = useCallback(() => {
-    if (recognitionRef.current) {
-      recognitionRef.current.stop();
-      setIsListening(false);
-    }
+    recognitionRef.current?.stop();
+    setIsListening(false);
+    setInterimTranscript("");
   }, []);
 
   const clearTranscript = useCallback(() => {
     setTranscript("");
+    setInterimTranscript("");
     setError("");
   }, []);
 
   return {
     isListening,
     transcript,
+    interimTranscript,
     error,
     startListening,
     stopListening,

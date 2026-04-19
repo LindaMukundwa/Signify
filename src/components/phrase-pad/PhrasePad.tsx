@@ -1,5 +1,5 @@
 import React, { useState, useCallback } from "react";
-import type { Phrase, PhraseCategory } from "../../types/phrase";
+import type { PhraseCategory } from "../../types/phrase";
 import { usePhraseStore } from "../../store/phraseStore";
 import { PhraseCard } from "./PhraseCard";
 import { AddPhraseModal } from "./AddPhraseModal";
@@ -13,7 +13,7 @@ export const PhrasePad: React.FC = () => {
   const addPhrase = usePhraseStore((state) => state.addPhrase);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isSpeaking, setIsSpeaking] = useState(false);
-  const { isListening, transcript, startListening, stopListening, clearTranscript, isSupported } = useSpeechRecognition();
+  const { isListening, transcript, interimTranscript, startListening, stopListening, clearTranscript, isSupported } = useSpeechRecognition();
 
   const categories: PhraseCategory[] = ["medical", "emergency", "daily", "custom"];
 
@@ -57,7 +57,7 @@ export const PhrasePad: React.FC = () => {
             <h2 className="text-lg font-semibold mb-4">
               {categoryLabels[category]}
             </h2>
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
+            <div id="phraseCard" className="grid grid-cols-2 md:grid-cols-3 gap-3">
               {categoryPhrases.map((phrase) => (
                 <PhraseCard
                   key={phrase.id}
@@ -100,34 +100,40 @@ export const PhrasePad: React.FC = () => {
           </div>
 
           {/* Transcript Display */}
-          {transcript && (
+          {(transcript || interimTranscript || isListening) && (
             <div className="space-y-3">
-              <div className="p-4 bg-primary-light rounded border border-primary">
-                <p className="text-text-primary">{transcript}</p>
+              <div className="p-4 bg-primary-light rounded-lg border border-primary min-h-[56px]">
+                <p className="text-text-primary">
+                  {transcript}
+                  {interimTranscript && (
+                    <span className="text-text-muted italic">{interimTranscript}</span>
+                  )}
+                  {!transcript && !interimTranscript && isListening && (
+                    <span className="text-text-muted italic">Listening…</span>
+                  )}
+                </p>
               </div>
 
-              <div className="flex gap-2">
-                <Button
-                  variant="primary"
-                  fullWidth
-                  onClick={() => {
-                    if ("speechSynthesis" in window) {
-                      window.speechSynthesis.cancel();
-                      const utterance = new SpeechSynthesisUtterance(transcript);
-                      window.speechSynthesis.speak(utterance);
-                    }
-                  }}
-                >
-                  Speak It
-                </Button>
-                <Button
-                  variant="secondary"
-                  onClick={clearTranscript}
-                  className="gap-1"
-                >
-                  <Trash2 size={16} />
-                </Button>
-              </div>
+              {transcript && (
+                <div className="flex gap-2">
+                  <Button
+                    variant="primary"
+                    fullWidth
+                    onClick={() => {
+                      if ("speechSynthesis" in window) {
+                        window.speechSynthesis.cancel();
+                        const utterance = new SpeechSynthesisUtterance(transcript);
+                        window.speechSynthesis.speak(utterance);
+                      }
+                    }}
+                  >
+                    Speak It
+                  </Button>
+                  <Button variant="secondary" onClick={clearTranscript} className="gap-1">
+                    <Trash2 size={16} />
+                  </Button>
+                </div>
+              )}
             </div>
           )}
 

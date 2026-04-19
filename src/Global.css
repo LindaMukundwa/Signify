@@ -34,9 +34,17 @@
     justify-content: center;
   }
 
+  html, body, #root {
+    height: 100%;
+  }
+
   html {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+  }
+
+  #features {
+    padding: 15px;
   }
 
   body {
@@ -46,6 +54,7 @@
     line-height: 1.5;
     justify-content: center;
     align-items: center;
+    padding: 10px;
   }
 
   h1 {
@@ -62,9 +71,9 @@
     line-height: 1.3;
     color: var(--color-text-primary);
   }
-  
-  li::marker {
-    content: ""
+
+  .text-2xl {
+    font-size: 60px;
   }
 
   h3 {
@@ -87,6 +96,10 @@
     color: var(--color-text-muted);
   }
 
+  li::marker {
+    content: "";
+  }
+
   :focus-visible {
     outline: 2px solid var(--color-primary);
     outline-offset: 2px;
@@ -100,22 +113,62 @@
   }
 }
 
+#savedProfile, #resourceCard {
+    background-color: #def7db;
+}
+
+#savedProfile {
+    padding: 1.5px;
+    border-radius: 5%;
+    font-size: 12px;
+}
+
+#bottomNav {
+    justify-content: space-evenly;
+    align-items: baseline;
+    display: flex;
+    padding: 15px;
+    gap: 20px 30px;
+    flex-wrap: nowrap;
+    flex-direction: row-reverse;
+}
+
+#header {
+    align-items: center;
+    display: flex;
+}
+
+#welcome {
+    font-family: "Archivo Black", sans-serif;
+    font-weight: 600px;
+}
+
+#phraseCard {
+    display: flex;
+    flex-wrap: wrap;
+    align-content: space-between;
+    justify-content: center;
+    padding: 20px;
+    flex-direction: row-reverse;
+}
+
+#phraseCard::hover {
+    background-color: #0F6E56;
+    color:#0F6E56
+}
+
 @layer components {
   .card {
     background-color: var(--color-surface);
     border: 0.5px solid var(--color-border);
     border-radius: var(--radius-md);
-    padding: 30px;
+    padding: 16px;
     text-align: center;
   }
 
   .card-lg {
     border-radius: var(--radius-lg);
     padding: 20px;
-  }
-
-  .text-2xl {
-    font-size: 60px;
   }
 
   .btn {
@@ -233,7 +286,7 @@
   .badge {
     display: inline-flex;
     align-items: center;
-    padding: 8px 10px;
+    padding: 4px 10px;
     border-radius: 12px;
     font-size: 12px;
     font-weight: 500;
@@ -247,13 +300,5 @@
   .badge-primary {
     background-color: var(--color-primary-light);
     color: var(--color-primary-dark);
-  }
-}
-
-/* Bottom nav clearance on mobile */
-@media (max-width: 639px) {
-  body {
-    padding-bottom: 20px;
-    align-items: center;
   }
 }

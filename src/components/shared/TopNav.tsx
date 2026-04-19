@@ -16,17 +16,17 @@ export const TopNav: React.FC = () => {
   const title = PAGE_TITLES[pathname];
 
   return (
-    <header className="bg-surface border-b border-border sticky top-0 z-50">
-      <div className="max-w-app mx-auto px-4 h-14 flex items-center gap-3">
+    <header id='header' className="bg-surface border-b border-border sticky top-0 z-50 flex-shrink-0">
+      <div className="max-w-app mx-auto px-4 h-14 flex items-center">
         {isHome ? (
-          <>
+          <div className="w-full justify-center">
             <img
               src={SignifyLogo}
               alt="Signify"
-              className="w-8 h-8 rounded-full object-cover flex-shrink-0"
-              style={{ width: '100px', borderRadius: '50%', alignContent: 'center'}} 
+              className="h-10 w-10 rounded-full object-cover"
+              style={{ width: '120px', borderRadius: '50%' }} 
             />
-          </>
+          </div>
         ) : (
           <>
             <button
@@ -37,7 +37,7 @@ export const TopNav: React.FC = () => {
               <ChevronLeft size={22} className="text-text-primary" />
             </button>
             {title && (
-              <h1 className="text-lg font-semibold text-text-primary">{title}</h1>
+              <h1 className="text-2xl font-semibold text-text-primary ml-2">{title}</h1>
             )}
           </>
         )}

@@ -11,7 +11,7 @@ export const BottomNav: React.FC = () => {
   const { pathname } = useLocation();
 
   return (
-    <nav className="bg-surface border-t border-border z-40">
+    <nav id="bottomNav" className="bg-surface border-t border-border z-40">
       <div className="max-w-app mx-auto flex h-14">
         {navItems.map(({ path, label, icon: Icon }) => {
           const active = pathname === path;

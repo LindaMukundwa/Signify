@@ -16,23 +16,23 @@ export default function MedicalIDPage() {
     <div className="bg-bg">
       <main className="max-w-app w-full mx-auto px-4 py-8 pb-6">
         {hasProfile && (
-          <div className="mb-6 flex gap-2 bg-surface rounded-lg p-1">
+          <div className="mb-6 flex bg-surface-secondary rounded-full p-1 gap-1 border border-border">
             <button
               onClick={() => setActiveTab("form")}
-              className={`flex-1 px-4 py-2 rounded-md font-medium transition-colors ${
+              className={`flex-1 py-2 rounded-full text-sm font-semibold transition-all duration-200 ${
                 activeTab === "form"
-                  ? "bg-primary text-white"
-                  : "text-text-secondary hover:text-text-primary"
+                  ? "bg-surface text-text-primary shadow-sm"
+                  : "text-text-muted hover:text-text-secondary"
               }`}
             >
               Edit
             </button>
             <button
               onClick={() => setActiveTab("preview")}
-              className={`flex-1 px-4 py-2 rounded-md font-medium transition-colors ${
+              className={`flex-1 py-2 rounded-full text-sm font-semibold transition-all duration-200 ${
                 activeTab === "preview"
-                  ? "bg-primary text-white"
-                  : "text-text-secondary hover:text-text-primary"
+                  ? "bg-surface text-text-primary shadow-sm"
+                  : "text-text-muted hover:text-text-secondary"
               }`}
             >
               View & Share
@@ -64,7 +64,6 @@ export default function MedicalIDPage() {
         ) : (
           <div className="space-y-8">
             <div>
-              <h2 className="text-2xl font-bold text-text-primary mb-2">Your Medical ID</h2>
               <p className="text-text-secondary">
                 Your medical information is displayed below. Share your QR code with first
                 responders or healthcare providers.

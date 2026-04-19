@@ -1,8 +1,24 @@
 import { Link } from "react-router-dom";
-import { Heart, Zap, Hand, QrCode } from "lucide-react";
+import { Heart, Zap, Hand, QrCode, Scale } from "lucide-react";
 import { Button } from "../components/shared/Button";
 import { Card } from "../components/shared/Card";
 import { useProfileStore } from "../store/profileStore";
+
+const HeartIcon = () => (
+  <Heart color="red" strokeWidth={2} />
+);
+
+const ZapIcon = () => (
+  <Zap color="yellow" strokeWidth={2} />
+);
+
+const HandIcon = () => (
+  <Hand color="blue" strokeWidth={2} />
+);
+
+const QrCodeIcon = () => (
+  <QrCode color="black" strokeWidth={2} />
+);
 
 export default function HomePage() {
   const profile = useProfileStore((state) => state.profile);
@@ -13,7 +29,7 @@ export default function HomePage() {
       <main className="max-w-app w-full mx-auto px-4 py-8 space-y-8">
         {/* Welcome Message */}
         <div className="space-y-3">
-          <h2 className="text-2xl font-bold text-text-primary">Welcome</h2>
+          <h2 id="welcome" className="text-2xl font-bold text-text-primary">Welcome</h2>
           <p className="text-text-secondary">
             Signify helps you communicate with hearing people in emergency and
             everyday situations. All data stays on your device.
@@ -34,7 +50,7 @@ export default function HomePage() {
               </div>
               <div>
                 <p className="font-semibold text-text-primary">{profile.name}</p>
-                <p className="text-sm text-text-secondary">Profile saved</p>
+                <p id="savedProfile" className="text-sm text-text-secondary">Profile saved</p>
               </div>
             </div>
           </Card>
@@ -128,10 +144,10 @@ export default function HomePage() {
         )}
 
         {/* ADA Resources Section */}
-        <Card className="border-primary bg-primary-dark">
+        <Card id="resourceCard" className="border-primary bg-primary-dark">
           <div className="space-y-4">
             <div className="flex items-start gap-3">
-              <span className="text-2xl">⚖️</span>
+              <Scale/>
               <div className="flex-1">
                 <h3 className="font-semibold text-text-primary">Know Your ADA Rights</h3>
                 <p className="text-sm text-text-secondary mt-2">
@@ -217,8 +233,8 @@ export default function HomePage() {
         </Card>
 
         {/* Features */}
-        <div>
-          <h3 className="font-semibold text-text-primary mb-4">Why Signify?</h3>
+        <div id="features" >
+          <h2 className="font-semibold text-text-primary mb-4">Why Signify?</h2>
           <ul className="space-y-3">
             <li className="flex gap-3">
               <span className="text-primary font-bold">✓</span>

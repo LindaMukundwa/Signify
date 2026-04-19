@@ -14,9 +14,9 @@ import NotFound from "./pages/NotFound";
 function App() {
   return (
     <BrowserRouter>
-      <div className="min-h-screen bg-bg flex flex-col">
+      <div className="h-screen flex flex-col bg-bg overflow-hidden">
         <TopNav />
-        <main className="flex-1">
+        <main className="flex-1 overflow-y-auto">
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/medical-id" element={<MedicalIDPage />} />
