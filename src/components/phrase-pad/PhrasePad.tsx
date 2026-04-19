@@ -4,13 +4,16 @@ import { usePhraseStore } from "../../store/phraseStore";
 import { PhraseCard } from "./PhraseCard";
 import { AddPhraseModal } from "./AddPhraseModal";
 import { Button } from "../shared/Button";
-import { Plus } from "lucide-react";
+import { Card } from "../shared/Card";
+import { Plus, Mic, MicOff, Trash2 } from "lucide-react";
+import { useSpeechRecognition } from "../../hooks/useSpeechRecognition";
 
 export const PhrasePad: React.FC = () => {
   const phrases = usePhraseStore((state) => state.phrases);
   const addPhrase = usePhraseStore((state) => state.addPhrase);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isSpeaking, setIsSpeaking] = useState(false);
+  const { isListening, transcript, startListening, stopListening, clearTranscript, isSupported } = useSpeechRecognition();
 
   const categories: PhraseCategory[] = ["medical", "emergency", "daily", "custom"];
 
@@ -66,6 +69,76 @@ export const PhrasePad: React.FC = () => {
           </div>
         );
       })}
+
+      {/* Voice-to-Text Input */}
+      {isSupported && (
+        <Card className="mt-8 space-y-4">
+          <h2 className="text-lg font-semibold">Voice-to-Text</h2>
+          <p className="text-sm text-text-secondary">
+            Tap the microphone button to speak, and your words will be transcribed below.
+          </p>
+
+          {/* Microphone Button */}
+          <div className="flex gap-3">
+            <Button
+              variant={isListening ? "danger" : "primary"}
+              onClick={isListening ? stopListening : startListening}
+              className="gap-2 flex-1"
+            >
+              {isListening ? (
+                <>
+                  <MicOff size={20} />
+                  Stop Recording
+                </>
+              ) : (
+                <>
+                  <Mic size={20} />
+                  Start Recording
+                </>
+              )}
+            </Button>
+          </div>
+
+          {/* Transcript Display */}
+          {transcript && (
+            <div className="space-y-3">
+              <div className="p-4 bg-primary-light rounded border border-primary">
+                <p className="text-text-primary">{transcript}</p>
+              </div>
+
+              <div className="flex gap-2">
+                <Button
+                  variant="primary"
+                  fullWidth
+                  onClick={() => {
+                    if ("speechSynthesis" in window) {
+                      window.speechSynthesis.cancel();
+                      const utterance = new SpeechSynthesisUtterance(transcript);
+                      window.speechSynthesis.speak(utterance);
+                    }
+                  }}
+                >
+                  Speak It
+                </Button>
+                <Button
+                  variant="secondary"
+                  onClick={clearTranscript}
+                  className="gap-1"
+                >
+                  <Trash2 size={16} />
+                </Button>
+              </div>
+            </div>
+          )}
+
+          {/* Error Message */}
+          {/* {error && (
+            <div className="p-3 bg-danger/10 border border-danger rounded text-sm text-danger">
+              {error}
+            </div>
+          )} */}
+        </Card>
+      )}
 
       {/* Add Phrase Button */}
       <div className="flex justify-center pt-4">

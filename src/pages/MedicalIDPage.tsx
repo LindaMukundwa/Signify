@@ -28,7 +28,7 @@ export default function MedicalIDPage() {
           >
             <ChevronLeft size={24} className="text-text-primary" />
           </Link>
-          <h1 className="text-xl font-semibold text-text-primary">Medical ID</h1>
+          <h1 className="text-xl font-semibold text-text-primary">Your Medical ID</h1>
         </div>
       </header>
 

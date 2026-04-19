@@ -20,7 +20,7 @@ export default function HomePage() {
               src={SignifyLogo}
               alt="Signify logo"
               className="w-12 h-12"
-              style={{ width: '200px', borderRadius: '50%' }} 
+              style={{ width: '100px', borderRadius: '50%' }} 
             />
             <div>
               <p className="text-sm text-text-secondary mt-0">
@@ -148,6 +148,95 @@ export default function HomePage() {
             </div>
           </Card>
         )}
+
+        {/* ADA Resources Section */}
+        <Card className="border-primary bg-primary-light">
+          <div className="space-y-4">
+            <div className="flex items-start gap-3">
+              <span className="text-2xl">⚖️</span>
+              <div className="flex-1">
+                <h3 className="font-semibold text-text-primary">Know Your ADA Rights</h3>
+                <p className="text-sm text-text-secondary mt-2">
+                  Under the Americans with Disabilities Act (ADA), you have the right to
+                  <strong> effective communication</strong> in healthcare settings. This means
+                  you must receive information as clearly as those without disabilities.
+                </p>
+              </div>
+            </div>
+
+            <hr className="border-primary/20" />
+
+            <div className="space-y-3 text-sm">
+              <div>
+                <p className="font-semibold text-text-primary mb-1">Your rights include:</p>
+                <ul className="space-y-2 text-text-secondary">
+                  <li className="flex gap-2">
+                    <span className="text-primary">✓</span>
+                    <span>Written communication, note-taking, or detailed explanations</span>
+                  </li>
+                  <li className="flex gap-2">
+                    <span className="text-primary">✓</span>
+                    <span>Visual aids, diagrams, or demonstrations</span>
+                  </li>
+                  <li className="flex gap-2">
+                    <span className="text-primary">✓</span>
+                    <span>Time to review information before decisions</span>
+                  </li>
+                  <li className="flex gap-2">
+                    <span className="text-primary">✓</span>
+                    <span>
+                      Accommodation for your preferred communication method (writing,
+                      gestures, etc.)
+                    </span>
+                  </li>
+                </ul>
+              </div>
+
+              <div>
+                <p className="font-semibold text-text-primary mb-1">
+                  When contacting a healthcare provider:
+                </p>
+                <ul className="space-y-2 text-text-secondary">
+                  <li className="flex gap-2">
+                    <span className="text-primary">→</span>
+                    <span>State your communication needs clearly upfront</span>
+                  </li>
+                  <li className="flex gap-2">
+                    <span className="text-primary">→</span>
+                    <span>Use Signify to share your Medical ID and communication preferences</span>
+                  </li>
+                  <li className="flex gap-2">
+                    <span className="text-primary">→</span>
+                    <span>Request confirmation that information is understood</span>
+                  </li>
+                  <li className="flex gap-2">
+                    <span className="text-primary">→</span>
+                    <span>
+                      If accommodations are denied, report to the HHS Office for Civil Rights
+                    </span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <hr className="border-primary/20" />
+
+            <div className="p-3 bg-white/50 rounded text-sm">
+              <p className="font-semibold text-text-primary mb-1">Need Help?</p>
+              <p className="text-text-secondary mb-2">
+                If you need more information about your ADA rights or want to file a complaint:
+              </p>
+              <a
+                href="https://www.hhs.gov/ocr/index.html"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-primary font-semibold hover:text-primary-dark transition-colors"
+              >
+                HHS Office for Civil Rights →
+              </a>
+            </div>
+          </div>
+        </Card>
 
         {/* Features */}
         <div>
