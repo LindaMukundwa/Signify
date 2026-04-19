@@ -38,7 +38,7 @@ export default function HomePage() {
             />
             <h2 className="text-2xl font-bold text-text-primary">Welcome</h2>
             </div>
-          <p className="text-text-secondary">
+          <p id="subtext" className="text-text-secondary">
             Signify helps you communicate with hearing people in emergency and
             everyday situations. All data stays on your device.
           </p>

@@ -177,6 +177,24 @@
     background-color: darkorange;
 }
 
+#instructions {
+    background-color: rgb(255, 230, 0);
+    opacity: 0.5;
+    color: black;
+    padding: 15px;
+}
+
+#camera {
+    padding: 3px;
+}
+
+#subtext{
+    font-style: italic;
+    font-size: 14px;
+    padding: 5px;
+    text-align: center;
+    color: #5F5E5A;
+}
 #welcome {
     font-family: "Lexend", sans-serif;
     color: darkslategray;
@@ -186,7 +204,7 @@
     flex-wrap: nowrap;
     flex-direction: row-reverse;
     align-content: center;
-    justify-content: space-between;
+    justify-content: space-evenly;
 }
 
 #welcome img {

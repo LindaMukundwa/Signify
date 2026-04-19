@@ -43,10 +43,10 @@ export default function MedicalIDPage() {
         {activeTab === "form" ? (
           <div className="space-y-6">
             <div>
-              <h2 className="text-2xl font-bold text-text-primary mb-2">
+              <h3 className="font-bold text-text-primary mb-2">
                 {hasProfile ? "Update Profile" : "Create Your Medical ID"}
-              </h2>
-              <p className="text-text-secondary">
+              </h3>
+              <p id="subtext" className="text-text-secondary">
                 {hasProfile
                   ? "Update your medical information. All data is stored locally on your device."
                   : "Enter your medical information to create a shareable QR code. This stays on your device."}
@@ -64,7 +64,7 @@ export default function MedicalIDPage() {
         ) : (
           <div className="space-y-8">
             <div>
-              <p className="text-text-secondary">
+              <p id="subtext" className="text-text-secondary">
                 Your medical information is displayed below. Share your QR code with first
                 responders or healthcare providers.
               </p>

@@ -27,7 +27,7 @@ export default function FingerspellingPage() {
     <div className="bg-bg">
       <main className="max-w-app w-full mx-auto px-4 py-8 pb-6">
         <div className="mb-8">
-          <p className="text-text-secondary">
+          <p id="subtext" className="text-text-secondary">
             Please hold your hand in front of the camera to recognize ASL letters in real-time.
           </p>
           {!modelReady && !modelError && (

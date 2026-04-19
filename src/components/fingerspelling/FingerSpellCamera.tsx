@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState, useCallback, type FC } from "react";
 import { classify, isMotionLetter } from "../../lib/classifyHandshape";
 import { useHandDetection } from "../../hooks/useHandDetection";
+import { Hand} from "lucide-react";
 
 const HOLD_MS = 800;
 
@@ -183,7 +184,7 @@ export const FingerspellCamera: FC<FingerspellCameraProps> = ({ modelReady }) =>
               </div>
             ) : (
               <div className="bg-black/40 rounded-2xl px-4 py-2">
-                <span className="text-white/60 text-sm">Show your hand ✋</span>
+                <span className="text-white/60 text-sm">Show your hand <Hand/></span>
               </div>
             )}
           </div>
@@ -201,7 +202,7 @@ export const FingerspellCamera: FC<FingerspellCameraProps> = ({ modelReady }) =>
           <div className="absolute top-3 inset-x-3">
             <div className="bg-warning/90 rounded-lg px-3 py-2 text-center">
               <p className="text-white text-xs font-semibold">
-                {currentLetter} requires motion — not supported in static mode
+                {currentLetter} requires motion, which is not supported in static mode
               </p>
             </div>
           </div>
@@ -213,7 +214,7 @@ export const FingerspellCamera: FC<FingerspellCameraProps> = ({ modelReady }) =>
         <p className="text-xl font-semibold text-text-primary tracking-wider flex-1 min-w-0 break-all">
           {word || (
             <span className="text-text-muted text-sm font-normal">
-              Hold a letter for {HOLD_MS / 1000}s to commit — use SPACE and DEL gestures
+              Hold a letter for {HOLD_MS / 1000}s to commit and use SPACE and DEL gestures
             </span>
           )}
         </p>
@@ -228,7 +229,7 @@ export const FingerspellCamera: FC<FingerspellCameraProps> = ({ modelReady }) =>
       </div>
 
       {/* Info card */}
-      <div className="card text-sm text-text-secondary space-y-1">
+      <div id="instructions" className="card text-sm text-text-secondary space-y-1">
         <p>
           <span className="font-semibold text-text-primary">How it works:</span>{" "}
           Hold a letter steady for {HOLD_MS / 1000}s to add it to your word. Use the{" "}
