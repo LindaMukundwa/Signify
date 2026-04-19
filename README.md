@@ -2,9 +2,6 @@
 
 > Real-time ASL fingerspelling recognition and medical ID sharing for Deaf and hard-of-hearing users — built at HackPrinceton.
 
-<!-- Add a hero screenshot or demo GIF here -->
-<!-- ![Signify Demo](./docs/demo.gif) -->
-
 **Live app:** [signify.vercel.app](https://signify.vercel.app)
 
 ---
@@ -21,11 +18,11 @@ There is a historic inequity that people who need hearing accomodations have not
 
 Signify has three core features:
 
-**Medical ID** — A digital emergency card modelled after Apple Health's Medical ID. Users are able to fill in allergies, medications, conditions, emergency contacts, and insurance. The profile is encoded as a QR code that any first responder can scan to get an instant read-only view — no app required. Ideally, it will use the built-in shortcuts on both Android and iOS but for now, uses a QR code API.
+**Medical ID** - A digital emergency card modelled after Apple Health's Medical ID. Users are able to fill in allergies, medications, conditions, emergency contacts, and insurance. The profile is encoded as a QR code that any first responder can scan to get an instant read-only view — no app required. Ideally, it will use the built-in shortcuts on both Android and iOS but for now, uses a QR code API.
 
-**Phrase Pad** — A tap-to-speak card grid with 12+ built-in medical and emergency phrases such as "I am Deaf. I use ASL.", "Call 911.", "I need my medication." Users can also add custom phrases. Each card fires the browser's text-to-speech API so a hearing person can hear the message immediately.
+**Phrase Pad** - A tap-to-speak card grid with 12+ built-in medical and emergency phrases such as "I am Deaf. I use ASL.", "Call 911.", "I need my medication." Users can also add custom phrases. Each card fires the browser's text-to-speech API so a hearing person can hear the message immediately.
 
-**Fingerspelling** — A live camera feed that uses on-device machine learning to recognise ASL hand shapes letter by letter. Hold a sign for 0.8 seconds to commit it; spell out words one letter at a time. Works entirely offline after the first load.
+**Fingerspelling** - A live camera feed that uses on-device machine learning to recognise ASL hand shapes letter by letter. Hold a sign for 0.8 seconds to commit it; spell out words one letter at a time. Works entirely offline after the first load.
 
 ---
 
